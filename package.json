@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/1360542446/local-server/issues"
   },
-  "homepage": "https://github.com/1360542446/local-server#readme"
+  "homepage": "https://github.com/1360542446/local-server#readme",
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1"
+  }
 }
