@@ -1,8 +1,8 @@
 {
     "id": "thinkgeo-world-streets-light",
-    "version": 1.1,
+    "version": 1.3,
     "owner": "ThinkGeo LLC",
-    "time": "2018/05/11",
+    "time": "2018/06/09",
     "background": "#aac6ee",
     "variables": {
         "@naturalAndSports": "#439c3c",
@@ -26,7 +26,7 @@
         "@pitch": "#c1dcb9",
         "@swimmingPool": "#aadaff",
         "@sand": "#f1ebd1",
-        "@cemetery": "#d1be69",
+        "@cemetery": "#dff6d2",
         "@sand_opacity07": "rgba(241, 235, 209, 0.7)",
         "@sand_opacity05": "rgba(241, 235, 209, 0.5)",
         "@sand_opacity02": "rgba(241, 235, 209, 0.2)",
@@ -66,7 +66,7 @@
         "@roadTrack": "#efc14a",
         "@cycleway": "#abd0a7",
         "@roadShieldMotorway": "#f6ce93",
-        "@roadShieldTrunk": "#fbead2",
+        "@roadShieldTrunk": "#ffe659",
         "@rail": "#cccccc",
         "@railOther": "#00ff00",
         "@railSubway": "#ed3773",
@@ -83,6 +83,7 @@
         "@grayLevel4": "#999999",
         "@grayLevel5": "#cccccc",
         "@grayLevel6": "#d6d6d6",
+        "@grayLevel7": "#ffffff",
         "@buildingShadow": "#ccc8bd",
         "@buildingOutline": "#dad6cb",
         "@buildingFill": "#e9e4d8",
@@ -805,11 +806,15 @@
             "filter": "layerName='building'",
             "style": [
                 {
-                    "filter": "zoom=14;class!='house'",
+                    "filter": "zoom=14;class='hospital,hotel,castle,university,civic,stadium'",
                     "polygon-fill": "@buildingFill"
                 },
                 {
-                    "filter": "zoom>=15;zoom<=17;",
+                    "filter": "zoom=15",
+                    "polygon-fill": "@buildingFill"
+                },
+                {
+                    "filter": "zoom>=16;zoom<=17",
                     "polygon-fill": "@buildingFill",
                     "polygon-outline-color": "@buildingOutline",
                     "polygon-outline-width": 1,
@@ -867,15 +872,16 @@
             "text-fill": "@grayLevel0",
             "text-halo-radius": 1,
             "text-force-horizontal-for-line": true,
-            "text-mask-outline-width": 2,
-            "text-mask-type": "RoundedCorners",
+            "text-mask-outline-width": 1,
+            "text-mask-outline-color": "rgba(0,0,0,0)",
+            "text-mask-type": "rectangle",
+            "text-mask-margin": "1,3,1,3",
             "style": [
                 {
                     "filter": "class='motorway'",
-                    "text-font": "bold 9px Arial, Helvetica, sans-serif",
-                    "text-mask-outline-color": "@grayLevel3",
+                    "text-font": "bold 10px Arial, Helvetica, sans-serif",
                     "text-mask-color": "@roadShieldMotorway",
-                    "text-mask-margin": "1",
+                    "text-fill": "@grayLevel0",
                     "style": [
                         {
                             "filter": "zoom>=7;zoom<=12",
@@ -889,10 +895,8 @@
                 },
                 {
                     "filter": "class='trunk'",
-                    "text-font": "bold 8px Arial, Helvetica, sans-serif",
-                    "text-mask-outline-color": "@grayLevel3",
+                    "text-font": "bold 9px Arial, Helvetica, sans-serif",
                     "text-mask-color": "@roadShieldTrunk",
-                    "text-mask-margin": "1",
                     "style": [
                         {
                             "filter": "zoom>=7;zoom<=16",
@@ -1322,7 +1326,8 @@
                         {
                             "filter": "zoom=11",
                             "line-width": 1,
-                            "line-opacity": 0.7
+                            "line-color": "@roadFill",
+                            "line-opacity": 0.8
                         },
                         {
                             "filter": "zoom=12;",
@@ -1466,7 +1471,8 @@
                         {
                             "filter": "zoom=12",
                             "line-width": 1,
-                            "line-opacity": 0.75
+                            "line-color": "@roadFill",
+                            "line-opacity": 0.7
                         },
                         {
                             "filter": "zoom=13",
@@ -1936,332 +1942,6 @@
                             ]
                         }
                     ]
-                },
-                {
-                    "filter": "class='construction'",
-                    "style": [
-                        {
-                            "filter": "zoom>=18;zoom<=19;",
-                            "line-color": "@grayLevel6",
-                            "line-width": 1,
-                            "line-dasharray": "10,5"
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='path'",
-                    "style": [
-                        {
-                            "filter": "zoom>=18;zoom<=19;",
-                            "line-color": "@roadOutline",
-                            "line-width": 4,
-                            "children": [
-                                {
-                                    "line-width": 2,
-                                    "line-color": "@roadFill"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='footway'",
-                    "line-cap": "butt",
-                    "style": [
-                        {
-                            "filter": "zoom>=17;zoom<=19;bridge=1",
-                            "line-color": "@roadTrack",
-                            "line-width": 6,
-                            "children": [
-                                {
-                                    "line-width": 4,
-                                    "line-color": "@roadFill"
-                                },
-                                {
-                                    "line-width": 1,
-                                    "line-dasharray": "5,5",
-                                    "line-color": "@roadTrack"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom>=17;zoom<=19;tunnel=1",
-                            "line-color": "@roadTrack",
-                            "line-dasharray": "10,3",
-                            "line-width": 6,
-                            "children": [
-                                {
-                                    "line-width": 4,
-                                    "line-color": "@roadFill"
-                                },
-                                {
-                                    "line-width": 1,
-                                    "line-dasharray": "5,5",
-                                    "line-color": "@roadTrack"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom>=17;zoom<=19;tunnel=0;bridge=0",
-                            "line-color": "@roadOutline",
-                            "line-width": 6,
-                            "children": [
-                                {
-                                    "line-width": 4,
-                                    "line-color": "@roadFill"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='steps'",
-                    "style": [
-                        {
-                            "filter": "zoom>=18;zoom<=19;",
-                            "line-color": "@roadTrack",
-                            "line-width": 6,
-                            "children": [
-                                {
-                                    "line-width": 4,
-                                    "line-color": "@roadFill"
-                                },
-                                {
-                                    "line-width": 4,
-                                    "line-dasharray": "1,5",
-                                    "line-color": "@roadTrack"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='bridleway'",
-                    "style": [
-                        {
-                            "filter": "zoom>=18;zoom<=19;",
-                            "line-color": "@roadTrack",
-                            "line-width": 2,
-                            "line-dasharray": "5,5"
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='cycleway'",
-                    "style": [
-                        {
-                            "filter": "zoom>=18;zoom<=19;",
-                            "line-color": "@cycleway",
-                            "line-width": 1,
-                            "line-dasharray": "5,5"
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='raceway'",
-                    "style": [
-                        {
-                            "filter": "zoom>=18;zoom<=19;",
-                            "line-color": "@grayLevel5",
-                            "line-width": 6
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='motorway_link'",
-                    "line-cap": "butt",
-                    "line-color": "@motorwayFill",
-                    "style": [
-                        {
-                            "filter": "zoom>=13;zoom<=14;",
-                            "line-width": 2
-                        },
-                        {
-                            "filter": "zoom=15;",
-                            "line-color": "@motorwayOutline",
-                            "line-width": 6,
-                            "children": [
-                                {
-                                    "line-width": 4,
-                                    "line-color": "@motorwayFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom=16;",
-                            "line-color": "@motorwayOutline",
-                            "line-width": 8,
-                            "children": [
-                                {
-                                    "line-width": 6,
-                                    "line-color": "@motorwayFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom=17;",
-                            "line-color": "@motorwayOutline",
-                            "line-width": 12,
-                            "children": [
-                                {
-                                    "line-width": 8,
-                                    "line-color": "@motorwayFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom>=18;zoom<=19",
-                            "line-color": "@motorwayOutline",
-                            "line-width": 14,
-                            "children": [
-                                {
-                                    "line-width": 10,
-                                    "line-color": "@motorwayFill"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='trunk_link'",
-                    "line-cap": "butt",
-                    "line-color": "@trunkFill",
-                    "style": [
-                        {
-                            "filter": "zoom=13;",
-                            "line-width": 1
-                        },
-                        {
-                            "filter": "zoom=14;",
-                            "line-width": 2
-                        },
-                        {
-                            "filter": "zoom=15;",
-                            "line-width": 6,
-                            "line-color": "@linkFill",
-                            "children": [
-                                {
-                                    "line-width": 4,
-                                    "line-color": "@trunkFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom=16;",
-                            "line-width": 8,
-                            "line-color": "@linkFill",
-                            "children": [
-                                {
-                                    "line-width": 6,
-                                    "line-color": "@trunkFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom=17;",
-                            "line-width": 12,
-                            "line-color": "@linkFill",
-                            "children": [
-                                {
-                                    "line-width": 8,
-                                    "line-color": "@trunkFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom>=18;zoom<=19",
-                            "line-width": 14,
-                            "line-color": "@linkFill",
-                            "children": [
-                                {
-                                    "line-width": 10,
-                                    "line-color": "@trunkFill"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='primary_link'",
-                    "line-cap": "butt",
-                    "line-color": "@roadOutline",
-                    "style": [
-                        {
-                            "filter": "zoom=14;",
-                            "line-width": 2
-                        },
-                        {
-                            "filter": "zoom>=15;zoom<=16",
-                            "line-width": 6,
-                            "children": [
-                                {
-                                    "line-width": 4,
-                                    "line-color": "@roadFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom=17;",
-                            "line-width": 10,
-                            "children": [
-                                {
-                                    "line-width": 8,
-                                    "line-color": "@roadFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom>=18;zoom<=19",
-                            "line-width": 12,
-                            "children": [
-                                {
-                                    "line-width": 10,
-                                    "line-color": "@roadFill"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "filter": "class='secondary_link, tertiary_link'",
-                    "line-cap": "butt",
-                    "line-color": "@roadOutline",
-                    "style": [
-                        {
-                            "filter": "zoom=14;",
-                            "line-width": 2
-                        },
-                        {
-                            "filter": "zoom>=15;zoom<=16",
-                            "line-width": 6,
-                            "children": [
-                                {
-                                    "line-width": 4,
-                                    "line-color": "@roadFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom=17;",
-                            "line-width": 10,
-                            "children": [
-                                {
-                                    "line-width": 8,
-                                    "line-color": "@roadFill"
-                                }
-                            ]
-                        },
-                        {
-                            "filter": "zoom>=18;zoom<=19",
-                            "line-width": 12,
-                            "children": [
-                                {
-                                    "line-width": 10,
-                                    "line-color": "@roadFill"
-                                }
-                            ]
-                        }
-                    ]
                 }
             ]
         },
@@ -2272,8 +1952,10 @@
                 {
                     "filter": "zoom>=18;zoom<=19;",
                     "text-name": "housenumber",
-                    "text-fill": "@adminLabelLevel5",
-                    "text-font": "12px sans-serif"
+                    "text-fill": "@buildingName",
+                    "text-halo-radius": 2,
+                    "text-halo-fill": "@haloTransp50",
+                    "text-font": "12px Arial, Helvetica, sans-serif"
                 }
             ]
         },
@@ -2528,6 +2210,8 @@
             "point-glyph": "ThinkgeoFont",
             "point-fill": "@naturalAndSports",
             "point-size": 22,
+            "point-outline-color": "#ffffff",
+            "point-outline-width": 3,
             "style": [
                 {
                     "filter": "class='airport'",
@@ -2562,7 +2246,7 @@
                     "filter": "class='university'",
                     "style": [
                         {
-                            "filter": "labelrank<=1;zoom=11|labelrank<=2;zoom=12|labelrank<=3;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                            "filter": "labelrank<=1;zoom=12|labelrank<=1;zoom=13|labelrank<=3;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                             "point-fill": "@cultural",
                             "point-glyph-name": ""
                         }
@@ -2579,10 +2263,10 @@
                     ]
                 },
                 {
-                    "filter": "class='college,arts_centre,grave_yard,theatre,golf_course,golf,sports_centre'",
+                    "filter": "class='college,arts_centre,theatre,golf_course,golf,sports_centre'",
                     "style": [
                         {
-                            "filter": "labelrank<=3;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                            "filter": "labelrank<=2;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                             "style": [
                                 {
                                     "filter": "class='college'",
@@ -2593,11 +2277,6 @@
                                     "filter": "class='arts_centre'",
                                     "point-fill": "@cultural",
                                     "point-glyph-name": ""
-                                },
-                                {
-                                    "filter": "class='grave_yard'",
-                                    "point-fill": "@commonService",
-                                    "point-glyph-name": ""
                                 },
                                 {
                                     "filter": "class='theatre'",
@@ -2624,30 +2303,25 @@
                     ]
                 },
                 {
-                    "filter": "class='school,library'",
+                    "filter": "class='library'",
                     "style": [
                         {
-                            "filter": "labelrank<=1;zoom=14|labelrank<=2;zoom=15|labelrank<=4;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                            "filter": "labelrank<=2;zoom=14|labelrank<=4;zoom=15|labelrank<=5;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                             "style": [
                                 {
                                     "filter": "class='library'",
                                     "point-fill": "@cultural",
                                     "point-glyph-name": ""
-                                },
-                                {
-                                    "filter": "class='school'",
-                                    "point-fill": "@cultural",
-                                    "point-glyph-name": ""
                                 }
                             ]
                         }
                     ]
                 },
                 {
-                    "filter": "class='bar,biergarden,cafe,fast_food,food_court,restaurant,kindergarden,fuel,taxi,bank,hospital,clinic,dentist,pharmacy,social_facility,veterinary,cinema,community_centre,courthouse,fire_station,embassy,marketplace,place_of_worship,police,prison,townhall,toilets,garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,attraction,camp_site,hostel,motel,theme_park,viewpoint,zoo,shelter,pub,fountain,casino,bicycle_rental,car_rental,bicycle_parking,ruins,memorial,monument,castle,battlefield,marina,water_tower,cave_entrance,motorcycle,garden_centre,cricket,climbing,canoebaseball,picnic_site,artwork,coniferous,mixed,deciduous,plant,recycling,post_office,nursing_home,ice_cream,toll_booth,wreck,windmill,crane,estate_agent,video,toys,tobacco,supermarket,pet,optician,newsagent,musical_instrument,mobile_phone,laundry,kiosk,jewelry,hifi,hearing_aids,hairdresser,gift,greengrocer,florist,doityourself,department_store,copyshop,convenience,confectionery,computer,clothes,car_repair,car_parts,car,butcher,books,bicycle,bakery,alcohol,tennis,soccer,shooting,motor,ice_stock,horse_racing,baseball,gymnastics,archery,chalet,caravan_site,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish,pizza,mineshaft,hydro,gas,solar,wind,swimming,information'",
+                    "filter": "class='bar,biergarden,cafe,fast_food,restaurant,fuel,bank,hospital,cinema,supermarket,food_court",
                     "style": [
                         {
-                            "filter": "labelrank<=3;zoom=14|labelrank<=4;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                            "filter": "labelrank<=3;zoom=14|labelrank<=6;zoom=15|labelrank<=8;zoom=16|labelrank<=9;zoom=17|labelrank<=10;zoom=18|labelrank<=10;zoom=19",
                             "style": [
                                 {
                                     "filter": "class='bar'",
@@ -2680,9 +2354,14 @@
                                     "point-glyph-name": ""
                                 },
                                 {
-                                    "filter": "class='kindergarden'",
-                                    "point-fill": "@cultural",
-                                    "point-glyph-name": ""
+                                    "filter": "class='bank'",
+                                    "point-fill": "@commonService",
+                                    "point-glyph-name": ""
+                                },
+                                {
+                                    "filter": "class='cinema'",
+                                    "point-fill": "@entertainment",
+                                    "point-glyph-name": ""
                                 },
                                 {
                                     "filter": "class='fuel'",
@@ -2690,19 +2369,39 @@
                                     "point-glyph-name": ""
                                 },
                                 {
-                                    "filter": "class='taxi'",
-                                    "point-fill": "@transportation",
-                                    "point-glyph-name": ""
-                                },
-                                {
-                                    "filter": "class='bank'",
-                                    "point-fill": "@commonService",
-                                    "point-glyph-name": ""
-                                },
-                                {
                                     "filter": "class='hospital'",
                                     "point-fill": "@medical",
                                     "point-glyph-name": ""
+                                },
+                                {
+                                    "filter": "class='supermarket'",
+                                    "point-fill": "@shop",
+                                    "point-glyph-name": ""
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "filter": "class='kindergarden,school,taxi,clinic,dentist,pharmacy,social_facility,veterinary,community_centre,courthouse,fire_station,embassy,marketplace,place_of_worship,police,prison,townhall,toilets,garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,attraction,camp_site,hostel,motel,theme_park,viewpoint,zoo,shelter,pub,fountain,casino,bicycle_rental,car_rental,bicycle_parking,ruins,memorial,monument,castle,battlefield,marina,water_tower,cave_entrance,motorcycle,garden_centre,cricket,climbing,canoebaseball,picnic_site,artwork,coniferous,mixed,deciduous,plant,recycling,post_office,nursing_home,ice_cream,toll_booth,wreck,windmill,crane,estate_agent,video,toys,tobacco,pet,optician,newsagent,musical_instrument,mobile_phone,laundry,kiosk,jewelry,hifi,hearing_aids,hairdresser,gift,greengrocer,florist,doityourself,department_store,copyshop,convenience,confectionery,computer,clothes,car_repair,car_parts,car,butcher,books,bicycle,bakery,alcohol,tennis,soccer,shooting,motor,ice_stock,horse_racing,baseball,gymnastics,archery,chalet,caravan_site,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish,pizza,mineshaft,hydro,gas,solar,wind,swimming,grave_yard,information'",
+                    "style": [
+                        {
+                            "filter": "labelrank<=2;zoom=14|labelrank<=2;zoom=15|labelrank<=3;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                            "style": [
+                                {
+                                    "filter": "class='kindergarden'",
+                                    "point-fill": "@cultural",
+                                    "point-glyph-name": ""
+                                },
+                                {
+                                    "filter": "class='school'",
+                                    "point-fill": "@cultural",
+                                    "point-glyph-name": ""
+                                },
+                                {
+                                    "filter": "class='taxi'",
+                                    "point-fill": "@transportation",
+                                    "point-glyph-name": ""
                                 },
                                 {
                                     "filter": "class='clinic'",
@@ -2730,11 +2429,6 @@
                                     "point-glyph-name": ""
                                 },
                                 {
-                                    "filter": "class='cinema'",
-                                    "point-fill": "@entertainment",
-                                    "point-glyph-name": ""
-                                },
-                                {
                                     "filter": "class='community_centre'",
                                     "point-fill": "@commonService",
                                     "point-glyph-name": ""
@@ -2753,6 +2447,11 @@
                                     "filter": "class='embassy'",
                                     "point-fill": "@cultural",
                                     "point-glyph-name": ""
+                                },
+                                {
+                                    "filter": "class='grave_yard'",
+                                    "point-fill": "@naturalAndSports",
+                                    "point-glyph-name": ""
                                 },
                                 {
                                     "filter": "class='marketplace'",
@@ -2777,7 +2476,7 @@
                                 {
                                     "filter": "class='townhall'",
                                     "point-fill": "@cultural",
-                                    "point-glyph-name": ""
+                                    "point-glyph-name": "\ue08f"
                                 },
                                 {
                                     "filter": "class='toilets'",
@@ -3043,11 +2742,6 @@
                                     "filter": "class='tobacco'",
                                     "point-fill": "@shop",
                                     "point-glyph-name": ""
-                                },
-                                {
-                                    "filter": "class='supermarket'",
-                                    "point-fill": "@shop",
-                                    "point-glyph-name": ""
                                 },
                                 {
                                     "filter": "class='pet'",
@@ -3587,7 +3281,7 @@
                     "filter": "class='university'",
                     "style": [
                         {
-                            "filter": "labelrank<=2;zoom=11|labelrank<=3;zoom=12|labelrank<=3;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                            "filter": "labelrank<=1;zoom=12|labelrank<=1;zoom=13|labelrank<=3;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                             "text-fill": "@cultural"
                         }
                     ]
@@ -3602,18 +3296,14 @@
                     ]
                 },
                 {
-                    "filter": "class='college,arts_centre,grave_yard,theatre,golf_course,golf,sports_centre'",
+                    "filter": "class='college,arts_centre,theatre,golf_course,golf,sports_centre'",
                     "style": [
                         {
-                            "filter": "labelrank<=3;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                            "filter": "labelrank<=2;zoom=13|labelrank<=3;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                             "style": [
                                 {
                                     "filter": "class='college,arts_centre'",
                                     "text-fill": "@cultural"
-                                },
-                                {
-                                    "filter": "class='grave_yard'",
-                                    "text-fill": "@commonService"
                                 },
                                 {
                                     "filter": "class='golf_course,golf,sports_centre'",
@@ -3628,13 +3318,13 @@
                     ]
                 },
                 {
-                    "filter": "class='library,school'",
+                    "filter": "class='library'",
                     "style": [
                         {
-                            "filter": "labelrank<=2;zoom=14|labelrank<=3;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                            "filter": "labelrank<=2;zoom=14|labelrank<=4;zoom=15|labelrank<=5;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                             "style": [
                                 {
-                                    "filter": "class='library,school'",
+                                    "filter": "class='library'",
                                     "text-fill": "@cultural"
                                 }
                             ]
@@ -3642,17 +3332,51 @@
                     ]
                 },
                 {
-                    "filter": "class='bar,biergarden,cafe,fast_food,food_court,restaurant,kindergarden,fuel,taxi,bank,hospital,clinic,dentist,pharmacy,social_facility,veterinary,cinema,community_centre,courthouse,fire_station,embassy,marketplace,place_of_worship,police,prison,townhall,toilets,garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,attraction,camp_site,hostel,motel,theme_park,viewpoint,zoo,shelter,pub,fountain,casino,bicycle_rental,car_rental,bicycle_parking,ruins,memorial,monument,castle,battlefield,marina,water_tower,cave_entrance,motorcycle,garden_centre,cricket,climbing,canoebaseball,picnic_site,artwork,coniferous, mixed,deciduous,plant,recycling,post_office,nursing_home,ice_cream,toll_booth,wreck,windmill,crane,estate_agent,video,toys,tobacco,supermarket,pet,optician,newsagent,musical_instrument,mobile_phone, laundry,kiosk,jewelry,hifi,hearing_aids,hairdresser,gift,greengrocer,florist,doityourself,department_store,copyshop,convenience,confectionery,computer,clothes,car_repair,car_parts,car,butcher,books,bicycle,bakery,alcohol,tennis,soccer,shooting,motor,ice_stock,horse_racing,baseball,gymnastics,archery,chalet,caravan_site,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish,pizza,mineshaft,hydro,gas,solar,wind,swimming,information'",
+                    "filter": "class='bar,biergarden,cafe,fast_food,restaurant,fuel,bank,hospital,cinema,supermarket,food_court'",
                     "style": [
                         {
-                            "filter": "labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                            "filter": "labelrank<=3;zoom=14|labelrank<=6;zoom=15|labelrank<=8;zoom=16|labelrank<=9;zoom=17|labelrank<=10;zoom=18|labelrank<=10;zoom=19",
+                            "style": [
+                                {
+                                    "filter": "class='bar,biergarden,cafe,fast_food,food_court,restaurant'",
+                                    "text-fill": "@eat"
+                                },
+                                {
+                                    "filter": "class='bank'",
+                                    "text-fill": "@commonService"
+                                },
+                                {
+                                    "filter": "class='cinema'",
+                                    "text-fill": "@entertainment"
+                                },
+                                {
+                                    "filter": "class='hospital'",
+                                    "text-fill": "@medical"
+                                },
+                                {
+                                    "filter": "class='fuel'",
+                                    "text-fill": "@transportation"
+                                },
+                                {
+                                    "filter": "class='supermarket'",
+                                    "text-fill": "@shop"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "filter": "class='kindergarden,school,taxi,clinic,dentist,pharmacy,social_facility,veterinary,community_centre,courthouse,fire_station,embassy,marketplace,place_of_worship,police,prison,townhall,toilets,garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,attraction,camp_site,hostel,motel,theme_park,viewpoint,zoo,shelter,pub,fountain,casino,bicycle_rental,car_rental,bicycle_parking,ruins,memorial,monument,castle,battlefield,marina,water_tower,cave_entrance,motorcycle,garden_centre,cricket,climbing,canoebaseball,picnic_site,artwork,coniferous,mixed,deciduous,plant,recycling,post_office,nursing_home,ice_cream,toll_booth,wreck,windmill,crane,estate_agent,video,toys,tobacco,pet,optician,newsagent,musical_instrument,mobile_phone,laundry,kiosk,jewelry,hifi,hearing_aids,hairdresser,gift,greengrocer,florist,doityourself,department_store,copyshop,convenience,confectionery,computer,clothes,car_repair,car_parts,car,butcher,books,bicycle,bakery,alcohol,tennis,soccer,shooting,motor,ice_stock,horse_racing,baseball,gymnastics,archery,chalet,caravan_site,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish,pizza,mineshaft,hydro,gas,solar,wind,swimming,grave_yard,information'",
+                    "style": [
+                        {
+                            "filter": "labelrank<=2;zoom=14|labelrank<=2;zoom=15|labelrank<=3;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                             "style": [
                                 {
                                     "filter": "class='bar,biergarden,cafe,fast_food,food_court,restaurant,pub,ice_cream,greengrocer,confectionery,butcher,bakery,alcohol,pizza'",
                                     "text-fill": "@eat"
                                 },
                                 {
-                                    "filter": "class='kindergarden,courthouse,embassy,place_of_worship,police,prison,townhall,ruins,memorial,monument,castle,battlefield,artwork,wreck,books,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish'",
+                                    "filter": "class='kindergarden,school,courthouse,embassy,place_of_worship,police,prison,townhall,ruins,memorial,monument,castle,battlefield,artwork,wreck,books,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish'",
                                     "text-fill": "@cultural"
                                 },
                                 {
@@ -3668,7 +3392,7 @@
                                     "text-fill": "@medical"
                                 },
                                 {
-                                    "filter": "class='cinema,casino'",
+                                    "filter": "class='casino'",
                                     "text-fill": "@entertainment"
                                 },
                                 {
@@ -3676,7 +3400,7 @@
                                     "text-fill": "@shop"
                                 },
                                 {
-                                    "filter": "class='garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,camp_site,theme_park,cave_entrance,garden_centre,cricket,climbing,baseball,picnic_site,coniferous,mixed,deciduous,florist,tennis,soccer,shooting,motor,ice_stock,horse_racing,gymnastics,archery,caravan_site,swimming'",
+                                    "filter": "class='garden,grave_yard,miniature_golf,playground,water_park,swimming_pool,fitness_centre,camp_site,theme_park,cave_entrance,garden_centre,cricket,climbing,baseball,picnic_site,coniferous,mixed,deciduous,florist,tennis,soccer,shooting,motor,ice_stock,horse_racing,gymnastics,archery,caravan_site,swimming'",
                                     "text-fill": "@naturalAndSports"
                                 },
                                 {
@@ -3754,10 +3478,10 @@
                     "filter": "class='atm,bench,bbq,clock,drinking_water,post_box,telephone,vending_machine,block,bollard,cattle_grid,gate,lift_gate,kissing_gate,stile,anticlockwise,clockwise,guidepost,map,bus_stop,slipway,peak,subway_entrance,tram_stop,weir,sub_station,waste_disposal'",
                     "style": [
                         {
-                            "filter": "labelrank=9;zoom>=19;zoom<=19",
+                            "filter": "labelrank=9;zoom=19",
                             "style": [
                                 {
-                                    "filter": "class='atm,bench,clock,drinking_water,post_box,telephone,waste_disposal,,'",
+                                    "filter": "class='atm,bench,clock,drinking_water,post_box,telephone,waste_disposal,'",
                                     "text-fill": "@commonService"
                                 },
                                 {
@@ -4129,17 +3853,17 @@
             "style": [
                 {
                     "filter": "zoom=15;class='primary'",
-                    "line-oneway-symbol": "./onewayImages/oneway-gray.png"
+                    "line-oneway-symbol": "http://maptest.thinkgeo.com/onewayImages/oneway-gray.png"
                 },
                 {
                     "filter": "zoom>=16;zoom<=19;",
                     "style": [
                         {
                             "filter": "class!='motorway,motorway_link'",
-                            "line-oneway-symbol": "./onewayImages/oneway-gray.png"
+                            "line-oneway-symbol": "http://maptest.thinkgeo.com/onewayImages/oneway-gray.png"
                         },
                         {
-                            "line-oneway-symbol": "./onewayImages/oneway-white.png"
+                            "line-oneway-symbol": "http://maptest.thinkgeo.com/onewayImages/oneway-white.png"
                         }
                     ]
                 }
@@ -4235,7 +3959,7 @@
         },
         {
             "id": "worldstreets_source_test",
-            "url": "http://54.219.163.231/data/v/{z}/{x}/{y}.pbf",
+            "url": "http://52.53.170.123/v1/world-streets/{z}/{x}/{y}.mvt",
             "type": "MVT"
         }
     ],
@@ -4245,11 +3969,11 @@
             "source": "worldstreets_source_test",
             "styles": [
                 "country_name",
-                "state_name",
-                "place_others",
-                "place_popular",
                 "poi_icon",
                 "poi_text",
+                "place_popular",
+                "place_others",
+                "state_name",
                 "marine_name",
                 "country",
                 "urban",
@@ -4263,14 +3987,14 @@
                 "railway",
                 "road",
                 "water_name",
-                "motorway_name",
-                "trunk_name",
-                "primary_name",
-                "secondary_name",
-                "tertiary_name",
-                "residential_name",
-                "pedestrian_name",
                 "otherroad_name",
+                "pedestrian_name",
+                "residential_name",
+                "tertiary_name",
+                "secondary_name",
+                "primary_name",
+                "trunk_name",
+                "motorway_name",
                 "road_number",
                 "road_oneway",
                 "waterway_name",
