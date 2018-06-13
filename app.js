@@ -15,11 +15,8 @@ const server = http.createServer((request, response) => {
             {
                 let contentType = getContentTypeByFileType(path.extname(request.url), request, response);
                 response.setHeader('Content-Type', contentType['Content-Type']);
-                let encoding = contentType['Content-Type'] === 'text/*' ? 'utf-8' : 'binary';
-                getFileData(url, {
-                    encoding: encoding,
-                }).then(data => {
-                    response.write(data);
+                response.setHeader('Accept-Ranges', 'bytes');
+                sendFileData(url, request, response).then(data => {
                     response.end();
                 }).catch(err => {
                     response.statusCode = 404;
@@ -44,26 +41,52 @@ const server = http.createServer((request, response) => {
     });
 });
 
+const getRequestFileRange = (range, fileSize) => {
+    let arr = range.match(/[0-9]+/);
+    if (arr.length === 1) {
+        return {
+            start: Number(arr[0]),
+            end: fileSize - 1,
+        };
+    }
+    return {
+        start: Number(arr[0]),
+        end: Math.max(Number(arr[1]), fileSize - 1),
+    };
 
-const getFileData = (url = __dirname, option = {}) => {
-    const rs = fs.createReadStream(url);
+};
+
+const sendFileData = (url = __dirname, request, response, option = {}) => {
     return new Promise((resolve, reject) => {
-        let tempData = [];
-        rs.on('data', chunk => {
-            tempData.push(chunk);
-        });
-        rs.on('end', () => {
-            let str;
-            if (option.encoding === 'binary') {
-                str = Buffer.concat(tempData);
-            } else {
-                str = tempData.join('');
-            }
-            resolve(str);
-        });
-        rs.on('error', err => {
-            reject(err.message);
-        });
+        if (request.headers['range']) {
+            getFileSize(url, resolve, reject);
+        } else {
+            resolve();
+        }
+    }).then(fileSize => {
+        if (!fileSize) {
+            fs.createReadStream(url).pipe(response);
+            return;
+        }
+        let { start, end } = { ...getRequestFileRange(request.headers['range'], fileSize) };
+        response.setHeader('Content-Length', end - start);
+        fs.createReadStream(url, {
+            'start': start,
+            'end': end
+        }).pipe(response);
+    }).catch(e => {
+
+    });
+
+};
+
+const getFileSize = (url, resolve, reject) => {
+    fs.stat(url, (error, stats) => {
+        if (error) {
+            reject(error);
+            return;
+        }
+        resolve(stats['size']);
     });
 };
 
@@ -122,33 +145,11 @@ const getTypeOfUrl = url => {
 
 };
 
+
 const getContentTypeByFileType = (type) => {
-    let contentType = '';
-    switch (type) {
-        case '.jpg':
-        case '.png':
-        case '.gif':
-        case '.ico':
-        {
-            contentType = 'image/' + type.slice(1);
-            break;
-        }
-        case '.avi':
-        case '.mp4':
-        case '.mpg':
-        case '.wmv':
-        {
-            contentType = 'video/' + type.slice(1);
-            break;
-        }
-        default:
-        {
-            contentType = 'text/*';
-        }
-    }
-    // response.setHeader('Content-Type', contentType);
+    const mime = require('./mime').mime;
     return {
-        'Content-Type': contentType
+        'Content-Type': mime[type.slice(1)] || 'text/*'
     };
 };
 

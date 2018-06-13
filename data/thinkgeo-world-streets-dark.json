@@ -1,8 +1,8 @@
 {
     "id": "thinkgeo-world-streets-dark",
-    "version": 1.1,
+    "version": 1.3,
     "owner": "ThinkGeo LLC",
-    "time": "2018/05/11",
+    "time": "2018/06/09",
     "background": "#192a2f",
     "variables": {
         "@naturalAndSports": "#439c3c",
@@ -26,7 +26,7 @@
         "@pitch": "#1d3318",
         "@swimmingPool": "#266d79",
         "@sand": "#535046",
-        "@cemetery": "#474018",
+        "@cemetery": "#233e2d",
         "@sand_opacity07": "rgba(83, 80, 70, 0.7)",
         "@sand_opacity05": "rgba(83, 80, 70, 0.5)",
         "@sand_opacity02": "rgba(83, 80, 70, 0.2)",
@@ -70,12 +70,12 @@
         "@cycleway": "#5a5a5a",
         "@roadShieldMotorway": "#202020",
         "@roadShieldTrunk": "#404040",
-        "@rail": "#363636",
+        "@rail": "#2a2a2a",
         "@railOther": "#00ff00",
         "@railSubway": "#ed3773",
         "@aerowayLevel1": "#3a3c3f",
         "@aerowayLevel3": "#44464b",
-        "@aerowayLevel5": "#4a4e52",
+        "@aerowayLevel5": "#323538",
         "@adminLabelLevel0": "#525150",
         "@adminLabelLevel1": "#6a6a69",
         "@adminLabelLevel3": "#8c8b86",
@@ -90,7 +90,7 @@
         "@buildingShadow": "#333333",
         "@buildingOutline": "#383838",
         "@buildingFill": "#424242",
-        "@buildingName": "#8b8a85",
+        "@buildingName": "#96958f",
         "@haloSolid": "#000000",
         "@haloTransp50": "rgba(0, 0, 0, 0.75)",
         "@haloTransp35": "rgba(0, 0, 0, 0.5)",
@@ -441,7 +441,7 @@
             "filter": "class='apron'",
             "style": [{
                 "filter": "zoom>=10;zoom<=19;",
-                "polygon-fill": "@aerowayLevel3"
+                "polygon-fill": "@aerowayLevel1"
             }]
         }]
     }, {
@@ -617,10 +617,13 @@
         "id": "building",
         "filter": "layerName='building'",
         "style": [{
-            "filter": "zoom=14;class!='house'",
+            "filter": "zoom=14;class='hospital,hotel,castle,university,civic,stadium'",
             "polygon-fill": "@buildingFill"
         }, {
-            "filter": "zoom>=15;zoom<=16;",
+            "filter": "zoom=15",
+            "polygon-fill": "@buildingFill"
+        }, {
+            "filter": "zoom>=16;zoom<=17",
             "polygon-fill": "@buildingFill",
             "polygon-outline-color": "@buildingOutline",
             "polygon-outline-width": 1,
@@ -628,7 +631,7 @@
             "polygon-shadow-dx": 1,
             "polygon-shadow-dy": -1
         }, {
-            "filter": "zoom>=17;zoom<=18;",
+            "filter": "zoom=18;",
             "polygon-fill": "@buildingFill",
             "polygon-outline-color": "@buildingOutline",
             "polygon-outline-width": 1,
@@ -667,7 +670,7 @@
         "text-name": "ref",
         "text-halo-radius": 1,
         "text-force-horizontal-for-line": true,
-        "text-mask-outline-width": 2,
+        "text-mask-outline-width": 1,
         "text-mask-type": "RoundedCorners",
         "style": [{
             "filter": "class='motorway'",
@@ -685,7 +688,7 @@
             }]
         }, {
             "filter": "class='trunk'",
-            "text-font": "bold 8px Arial, Helvetica, sans-serif",
+            "text-font": "bold 9px Arial, Helvetica, sans-serif",
             "text-fill": "#caf494",
             "text-mask-outline-color": "#6c9933",
             "text-mask-color": "@roadShieldTrunk",
@@ -1436,8 +1439,10 @@
         "style": [{
             "filter": "zoom>=18;zoom<=19;",
             "text-name": "housenumber",
-            "text-fill": "@adminLabelLevel5",
-            "text-font": "12px sans-serif"
+            "text-fill": "@buildingName",
+            "text-halo-radius": 2,
+            "text-halo-fill": "@haloTransp50",
+            "text-font": "600 12px Arial, Helvetica, sans-serif"
         }]
     }, {
         "id": "place_popular",
@@ -1638,6 +1643,8 @@
         "point-glyph": "ThinkgeoFont",
         "point-fill": "@naturalAndSports",
         "point-size": 22,
+        "point-outline-color": "#000000",
+        "point-outline-width": 3,
         "style": [{
             "filter": "class='airport'",
             "style": [{
@@ -1662,7 +1669,7 @@
         }, {
             "filter": "class='university'",
             "style": [{
-                "filter": "labelrank<=1;zoom=11|labelrank<=2;zoom=12|labelrank<=3;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                "filter": "labelrank<=1;zoom=12|labelrank<=1;zoom=13|labelrank<=3;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                 "point-fill": "@cultural",
                 "point-glyph-name": ""
             }]
@@ -1674,9 +1681,9 @@
                 "point-glyph-name": ""
             }]
         }, {
-            "filter": "class='college,arts_centre,grave_yard,theatre,golf_course,golf,sports_centre'",
+            "filter": "class='college,arts_centre,theatre,golf_course,golf,sports_centre'",
             "style": [{
-                "filter": "labelrank<=3;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                "filter": "labelrank<=2;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                 "style": [{
                     "filter": "class='college'",
                     "point-fill": "@cultural",
@@ -1685,10 +1692,6 @@
                     "filter": "class='arts_centre'",
                     "point-fill": "@cultural",
                     "point-glyph-name": ""
-                }, {
-                    "filter": "class='grave_yard'",
-                    "point-fill": "@commonService",
-                    "point-glyph-name": ""
                 }, {
                     "filter": "class='theatre'",
                     "point-fill": "@entertainment",
@@ -1708,27 +1711,23 @@
                 }]
             }]
         }, {
-            "filter": "class='school,library'",
+            "filter": "class='library'",
             "style": [{
-                "filter": "labelrank<=1;zoom=14|labelrank<=2;zoom=15|labelrank<=4;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                "filter": "labelrank<=2;zoom=14|labelrank<=4;zoom=15|labelrank<=5;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                 "style": [{
                     "filter": "class='library'",
                     "point-fill": "@cultural",
                     "point-glyph-name": ""
-                }, {
-                    "filter": "class='school'",
-                    "point-fill": "@cultural",
-                    "point-glyph-name": ""
                 }]
             }]
         }, {
-            "filter": "class='bar,biergarden,cafe,fast_food,food_court,restaurant,kindergarden,fuel,taxi,bank,hospital,clinic,dentist,pharmacy,social_facility,veterinary,cinema,community_centre,courthouse,fire_station,embassy,marketplace,place_of_worship,police,prison,townhall,toilets,garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,attraction,camp_site,hostel,motel,theme_park,viewpoint,zoo,shelter,pub,fountain,casino,bicycle_rental,car_rental,bicycle_parking,ruins,memorial,monument,castle,battlefield,marina,water_tower,cave_entrance,motorcycle,garden_centre,cricket,climbing,canoebaseball,picnic_site,artwork,coniferous,mixed,deciduous,plant,recycling,post_office,nursing_home,ice_cream,toll_booth,wreck,windmill,crane,estate_agent,video,toys,tobacco,supermarket,pet,optician,newsagent,musical_instrument,mobile_phone,laundry,kiosk,jewelry,hifi,hearing_aids,hairdresser,gift,greengrocer,florist,doityourself,department_store,copyshop,convenience,confectionery,computer,clothes,car_repair,car_parts,car,butcher,books,bicycle,bakery,alcohol,tennis,soccer,shooting,motor,ice_stock,horse_racing,baseball,gymnastics,archery,chalet,caravan_site,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish,pizza,mineshaft,hydro,gas,solar,wind,swimming,information'",
+            "filter": "class='bar,biergarden,cafe,fast_food,restaurant,fuel,bank,hospital,cinema,supermarket,food_court",
             "style": [{
-                "filter": "labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                "filter": "labelrank<=3;zoom=14|labelrank<=6;zoom=15|labelrank<=8;zoom=16|labelrank<=9;zoom=17|labelrank<=10;zoom=18|labelrank<=10;zoom=19",
                 "style": [{
                     "filter": "class='bar'",
                     "point-fill": "@eat",
-                    "point-glyph-name": "\ue0ae"
+                    "point-glyph-name": ""
                 }, {
                     "filter": "class='biergarden'",
                     "point-fill": "@eat",
@@ -1750,25 +1749,43 @@
                     "point-fill": "@eat",
                     "point-glyph-name": ""
                 }, {
-                    "filter": "class='kindergarden'",
-                    "point-fill": "@cultural",
-                    "point-glyph-name": ""
+                    "filter": "class='bank'",
+                    "point-fill": "@commonService",
+                    "point-glyph-name": ""
+                }, {
+                    "filter": "class='cinema'",
+                    "point-fill": "@entertainment",
+                    "point-glyph-name": ""
                 }, {
                     "filter": "class='fuel'",
                     "point-fill": "@transportation",
                     "point-glyph-name": ""
                 }, {
-                    "filter": "class='taxi'",
-                    "point-fill": "@transportation",
-                    "point-glyph-name": ""
-                }, {
-                    "filter": "class='bank'",
-                    "point-fill": "@commonService",
-                    "point-glyph-name": ""
-                }, {
                     "filter": "class='hospital'",
                     "point-fill": "@medical",
                     "point-glyph-name": ""
+                }, {
+                    "filter": "class='supermarket'",
+                    "point-fill": "@shop",
+                    "point-glyph-name": ""
+                }]
+            }]
+        }, {
+            "filter": "class='kindergarden,school,taxi,clinic,dentist,pharmacy,social_facility,veterinary,community_centre,courthouse,fire_station,embassy,marketplace,place_of_worship,police,prison,townhall,toilets,garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,attraction,camp_site,hostel,motel,theme_park,viewpoint,zoo,shelter,pub,fountain,casino,bicycle_rental,car_rental,bicycle_parking,ruins,memorial,monument,castle,battlefield,marina,water_tower,cave_entrance,motorcycle,garden_centre,cricket,climbing,canoebaseball,picnic_site,artwork,coniferous,mixed,deciduous,plant,recycling,post_office,nursing_home,ice_cream,toll_booth,wreck,windmill,crane,estate_agent,video,toys,tobacco,pet,optician,newsagent,musical_instrument,mobile_phone,laundry,kiosk,jewelry,hifi,hearing_aids,hairdresser,gift,greengrocer,florist,doityourself,department_store,copyshop,convenience,confectionery,computer,clothes,car_repair,car_parts,car,butcher,books,bicycle,bakery,alcohol,tennis,soccer,shooting,motor,ice_stock,horse_racing,baseball,gymnastics,archery,chalet,caravan_site,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish,pizza,mineshaft,hydro,gas,solar,wind,swimming,grave_yard,information'",
+            "style": [{
+                "filter": "labelrank<=2;zoom=14|labelrank<=2;zoom=15|labelrank<=3;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                "style": [{
+                    "filter": "class='kindergarden'",
+                    "point-fill": "@cultural",
+                    "point-glyph-name": ""
+                }, {
+                    "filter": "class='school'",
+                    "point-fill": "@cultural",
+                    "point-glyph-name": ""
+                }, {
+                    "filter": "class='taxi'",
+                    "point-fill": "@transportation",
+                    "point-glyph-name": ""
                 }, {
                     "filter": "class='clinic'",
                     "point-fill": "@medical",
@@ -1790,10 +1807,6 @@
                     "point-fill": "@medical",
                     "point-glyph-name": ""
                 }, {
-                    "filter": "class='cinema'",
-                    "point-fill": "@entertainment",
-                    "point-glyph-name": ""
-                }, {
                     "filter": "class='community_centre'",
                     "point-fill": "@commonService",
                     "point-glyph-name": ""
@@ -1809,6 +1822,10 @@
                     "filter": "class='embassy'",
                     "point-fill": "@cultural",
                     "point-glyph-name": ""
+                }, {
+                    "filter": "class='grave_yard'",
+                    "point-fill": "@naturalAndSports",
+                    "point-glyph-name": ""
                 }, {
                     "filter": "class='marketplace'",
                     "point-fill": "@shop",
@@ -1828,7 +1845,7 @@
                 }, {
                     "filter": "class='townhall'",
                     "point-fill": "@cultural",
-                    "point-glyph-name": ""
+                    "point-glyph-name": "\ue08f"
                 }, {
                     "filter": "class='toilets'",
                     "point-fill": "@commonService",
@@ -2041,10 +2058,6 @@
                     "filter": "class='tobacco'",
                     "point-fill": "@shop",
                     "point-glyph-name": ""
-                }, {
-                    "filter": "class='supermarket'",
-                    "point-fill": "@shop",
-                    "point-glyph-name": ""
                 }, {
                     "filter": "class='pet'",
                     "point-fill": "@shop",
@@ -2462,7 +2475,7 @@
         }, {
             "filter": "class='university'",
             "style": [{
-                "filter": "labelrank<=2;zoom=11|labelrank<=3;zoom=12|labelrank<=3;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                "filter": "labelrank<=1;zoom=12|labelrank<=1;zoom=13|labelrank<=3;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                 "text-fill": "@cultural"
             }]
         }, {
@@ -2472,15 +2485,12 @@
                 "text-fill": "@transportation"
             }]
         }, {
-            "filter": "class='college,arts_centre,grave_yard,theatre,golf_course,golf,sports_centre'",
+            "filter": "class='college,arts_centre,theatre,golf_course,golf,sports_centre'",
             "style": [{
-                "filter": "labelrank<=3;zoom=13|labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                "filter": "labelrank<=2;zoom=13|labelrank<=3;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                 "style": [{
                     "filter": "class='college,arts_centre'",
                     "text-fill": "@cultural"
-                }, {
-                    "filter": "class='grave_yard'",
-                    "text-fill": "@commonService"
                 }, {
                     "filter": "class='golf_course,golf,sports_centre'",
                     "text-fill": "@naturalAndSports"
@@ -2490,23 +2500,47 @@
                 }]
             }]
         }, {
-            "filter": "class='library,school'",
+            "filter": "class='library'",
             "style": [{
-                "filter": "labelrank<=2;zoom=14|labelrank<=3;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                "filter": "labelrank<=2;zoom=14|labelrank<=4;zoom=15|labelrank<=5;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                 "style": [{
-                    "filter": "class='library,school'",
+                    "filter": "class='library'",
                     "text-fill": "@cultural"
                 }]
             }]
         }, {
-            "filter": "class='bar,biergarden,cafe,fast_food,food_court,restaurant,kindergarden,library,school,fuel,taxi,bank,hospital,clinic,dentist,pharmacy,social_facility,veterinary,cinema,community_centre,courthouse,fire_station,embassy,marketplace,place_of_worship,police,prison,townhall,toilets,garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,attraction,camp_site,hostel,motel,theme_park,viewpoint,zoo,shelter,pub,fountain,casino,bicycle_rental,car_rental,bicycle_parking,ruins,memorial,monument,castle,battlefield,marina,water_tower,cave_entrance,motorcycle,garden_centre,cricket,climbing,canoebaseball,picnic_site,artwork,coniferous, mixed,deciduous,plant,recycling,post_office,nursing_home,ice_cream,toll_booth,wreck,windmill,crane,estate_agent,video,toys,tobacco,supermarket,pet,optician,newsagent,musical_instrument,mobile_phone, laundry,kiosk,jewelry,hifi,hearing_aids,hairdresser,gift,greengrocer,florist,doityourself,department_store,copyshop,convenience,confectionery,computer,clothes,car_repair,car_parts,car,butcher,books,bicycle,bakery,alcohol,tennis,soccer,shooting,motor,ice_stock,horse_racing,baseball,gymnastics,archery,chalet,caravan_site,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish,pizza,mineshaft,hydro,gas,solar,wind,swimming,information'",
+            "filter": "class='bar,biergarden,cafe,fast_food,restaurant,fuel,bank,hospital,cinema,supermarket,food_court'",
             "style": [{
-                "filter": "labelrank<=4;zoom=14|labelrank<=5;zoom=15|labelrank<=6;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
+                "filter": "labelrank<=3;zoom=14|labelrank<=6;zoom=15|labelrank<=8;zoom=16|labelrank<=9;zoom=17|labelrank<=10;zoom=18|labelrank<=10;zoom=19",
+                "style": [{
+                    "filter": "class='bar,biergarden,cafe,fast_food,food_court,restaurant'",
+                    "text-fill": "@eat"
+                }, {
+                    "filter": "class='bank'",
+                    "text-fill": "@commonService"
+                }, {
+                    "filter": "class='cinema'",
+                    "text-fill": "@entertainment"
+                }, {
+                    "filter": "class='hospital'",
+                    "text-fill": "@medical"
+                }, {
+                    "filter": "class='fuel'",
+                    "text-fill": "@transportation"
+                }, {
+                    "filter": "class='supermarket'",
+                    "text-fill": "@shop"
+                }]
+            }]
+        }, {
+            "filter": "class='kindergarden,school,taxi,clinic,dentist,pharmacy,social_facility,veterinary,community_centre,courthouse,fire_station,embassy,marketplace,place_of_worship,police,prison,townhall,toilets,garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,attraction,camp_site,hostel,motel,theme_park,viewpoint,zoo,shelter,pub,fountain,casino,bicycle_rental,car_rental,bicycle_parking,ruins,memorial,monument,castle,battlefield,marina,water_tower,cave_entrance,motorcycle,garden_centre,cricket,climbing,canoebaseball,picnic_site,artwork,coniferous,mixed,deciduous,plant,recycling,post_office,nursing_home,ice_cream,toll_booth,wreck,windmill,crane,estate_agent,video,toys,tobacco,pet,optician,newsagent,musical_instrument,mobile_phone,laundry,kiosk,jewelry,hifi,hearing_aids,hairdresser,gift,greengrocer,florist,doityourself,department_store,copyshop,convenience,confectionery,computer,clothes,car_repair,car_parts,car,butcher,books,bicycle,bakery,alcohol,tennis,soccer,shooting,motor,ice_stock,horse_racing,baseball,gymnastics,archery,chalet,caravan_site,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish,pizza,mineshaft,hydro,gas,solar,wind,swimming,grave_yard,information'",
+            "style": [{
+                "filter": "labelrank<=2;zoom=14|labelrank<=2;zoom=15|labelrank<=3;zoom=16|labelrank<=7;zoom=17|labelrank<=9;zoom=18|labelrank<=9;zoom=19",
                 "style": [{
                     "filter": "class='bar,biergarden,cafe,fast_food,food_court,restaurant,pub,ice_cream,greengrocer,confectionery,butcher,bakery,alcohol,pizza'",
                     "text-fill": "@eat"
                 }, {
-                    "filter": "class='kindergarden,courthouse,embassy,place_of_worship,police,prison,townhall,ruins,memorial,monument,castle,battlefield,artwork,wreck,books,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish'",
+                    "filter": "class='kindergarden,school,courthouse,embassy,place_of_worship,police,prison,townhall,ruins,memorial,monument,castle,battlefield,artwork,wreck,books,sikh,shinto,jain,muslim,hindu,christian,buddhist,jewish'",
                     "text-fill": "@cultural"
                 }, {
                     "filter": "class='fuel,taxi,bicycle_rental,car_rental,bicycle_parking,marina,water_tower,motorcycle,canoe,toll_booth,car_repair,car,car_parts,bicycle'",
@@ -2518,13 +2552,13 @@
                     "filter": "class='hospital,clinic,dentist,pharmacy,veterinary,nursing_home,hearing_aids'",
                     "text-fill": "@medical"
                 }, {
-                    "filter": "class='cinema,casino'",
+                    "filter": "class='casino'",
                     "text-fill": "@entertainment"
                 }, {
                     "filter": "class='marketplace,estate_agent,video,toys,tobacco,supermarket,pet,musical_instrument,mobile_phone,jewelry,hifi,gift,doityourself,department_store,computer'",
                     "text-fill": "@shop"
                 }, {
-                    "filter": "class='garden,miniature_golf,playground,water_park,swimming_pool,fitness_centre,camp_site,theme_park,cave_entrance,garden_centre,cricket,climbing,baseball,picnic_site,coniferous,mixed,deciduous,florist,tennis,soccer,shooting,motor,ice_stock,horse_racing,gymnastics,archery,caravan_site,swimming'",
+                    "filter": "class='garden,grave_yard,miniature_golf,playground,water_park,swimming_pool,fitness_centre,camp_site,theme_park,cave_entrance,garden_centre,cricket,climbing,baseball,picnic_site,coniferous,mixed,deciduous,florist,tennis,soccer,shooting,motor,ice_stock,horse_racing,gymnastics,archery,caravan_site,swimming'",
                     "text-fill": "@naturalAndSports"
                 }, {
                     "filter": "class='attraction,hostel,motel,viewpoint,zoo,fountain,chalet'",
@@ -2576,9 +2610,9 @@
         }, {
             "filter": "class='atm,bench,bbq,clock,drinking_water,post_box,telephone,vending_machine,block,bollard,cattle_grid,gate,lift_gate,kissing_gate,stile,anticlockwise,clockwise,guidepost,map,bus_stop,slipway,peak,subway_entrance,tram_stop,weir,sub_station,waste_disposal'",
             "style": [{
-                "filter": "labelrank=9;zoom>=18;zoom<=19",
+                "filter": "labelrank=9;zoom=19",
                 "style": [{
-                    "filter": "class='atm,bench,clock,drinking_water,post_box,telephone,waste_disposal,,'",
+                    "filter": "class='atm,bench,clock,drinking_water,post_box,telephone,waste_disposal,'",
                     "text-fill": "@commonService"
                 }, {
                     "filter": "class='bbq'",
@@ -2607,13 +2641,15 @@
                 "filter": "zoom>=12;zoom<=13",
                 "style": [{
                     "line-color": "@rail",
-                    "line-width": 1
+                    "line-width": 1,
+                    "line-opacity": 0.6
                 }]
             }, {
                 "filter": "zoom=14;",
                 "style": [{
                     "line-width": 1,
                     "line-color": "@rail",
+                    "line-opacity": 0.6,
                     "children": [{
                         "line-width": 6,
                         "line-cap": "butt",
@@ -2840,7 +2876,7 @@
         }]
     }, {
         "id": "road_oneway",
-        "filter": "oneway=1;layerName='road'",
+        "filter": "oneway=1;layerName='road_name'",
         "style": [{
             "filter": "zoom=15;class='primary'",
             "line-oneway-symbol": "./onewayImages/oneway-gray.png"
@@ -2907,15 +2943,15 @@
         "style": [{
             "filter": "zoom=15;class!='yes'",
             "text-wrap-width": 40,
-            "text-font": "11px Arial, Helvetica, sans-serif"
+            "text-font": "500 11px Arial, Helvetica, sans-serif"
         }, {
             "filter": "zoom>=16;zoom<=17",
             "text-wrap-width": 40,
-            "text-font": "11px Arial, Helvetica, sans-serif"
+            "text-font": "500 11px Arial, Helvetica, sans-serif"
         }, {
             "filter": "zoom>=18;zoom<=19",
             "text-wrap-width": 60,
-            "text-font": "13px Arial, Helvetica, sans-serif"
+            "text-font": "600 13px Arial, Helvetica, sans-serif"
         }]
     }],
     "sources": [{
@@ -2924,12 +2960,12 @@
         "type": "MVT"
     }, {
         "id": "worldstreets_source_test",
-        "url": "http://54.219.163.231/data/v/{z}/{x}/{y}.pbf",
+        "url": "http://52.53.170.123/v1/world-streets/{z}/{x}/{y}.mvt",
         "type": "MVT"
     }],
     "layers": [{
         "id": "worldstreets_layers",
         "source": "worldstreets_source_test",
-        "styles": ["country_name", "place_popular", "place_others", "state_name", "poi_icon", "poi_text", "marine_name", "country", "urban", "landcover", "country_boundary", "water", "aeroway", "building", "waterway", "province_boundary", "railway", "road", "water_name", "motorway_name", "trunk_name", "primary_name", "secondary_name", "tertiary_name", "residential_name", "pedestrian_name", "otherroad_name", "road_number", "road_oneway", "waterway_name", "building_name", "housenumber"]
+        "styles": ["country_name", "place_popular", "place_others", "state_name", "poi_icon", "poi_text", "marine_name", "country", "urban", "landcover", "country_boundary", "water", "aeroway", "building", "waterway", "province_boundary", "railway", "road", "water_name", "otherroad_name", "pedestrian_name", "residential_name", "tertiary_name", "secondary_name", "primary_name", "trunk_name", "motorway_name", "road_number", "road_oneway", "waterway_name", "building_name", "housenumber"]
     }]
 }
