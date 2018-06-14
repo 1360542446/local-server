@@ -47,7 +47,7 @@ const server = http.createServer((request, response) => {
 
 const getRequestFileRange = (range, fileSize) => {
     let arr = range.match(/[0-9]+/);
-    let min = Math.min(arr[1] || (Number(arr[0]) + parseInt(fileSize * 0.01, 10)), fileSize - 1);
+    let min = Math.min(arr[1] || (Number(arr[0]) + 10485760), fileSize - 1);
     return {
         start: Number(arr[0]),
         end: min,
@@ -56,6 +56,7 @@ const getRequestFileRange = (range, fileSize) => {
 
 const sendFileData = (url = __dirname, request, response, option = {}) => {
     return new Promise((resolve, reject) => {
+        // console.log(request.headers);
         if (request.headers['range']) {
             getFileSize(url, resolve, reject);
         } else {
