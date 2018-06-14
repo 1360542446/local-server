@@ -165,7 +165,7 @@
                 },
                 {
                   "text-name": "@name",
-                  "text-fill": "@grayLevel0",
+                  "text-    fill": "@grayLevel0",
                   "text-halo-fill": "@haloSolid",
                   "text-halo-radius": 2,
                   "style": [

@@ -15,9 +15,13 @@ const server = http.createServer((request, response) => {
             {
                 let contentType = getContentTypeByFileType(path.extname(request.url), request, response);
                 response.setHeader('Content-Type', contentType['Content-Type']);
-                response.setHeader('Accept-Ranges', 'bytes');
-                sendFileData(url, request, response).then(data => {
-                    response.end();
+                sendFileData(url, request, response).then(promise => {
+                    promise.then(data => {
+                        response.end();
+                    }).catch(err => {
+                        response.statusCode = 404;
+                        response.end(err.message);
+                    });
                 }).catch(err => {
                     response.statusCode = 404;
                     response.end(err.message);
@@ -43,17 +47,11 @@ const server = http.createServer((request, response) => {
 
 const getRequestFileRange = (range, fileSize) => {
     let arr = range.match(/[0-9]+/);
-    if (arr.length === 1) {
-        return {
-            start: Number(arr[0]),
-            end: fileSize - 1,
-        };
-    }
+    let min = Math.min(arr[1] || (Number(arr[0]) + parseInt(fileSize * 0.01, 10)), fileSize - 1);
     return {
         start: Number(arr[0]),
-        end: Math.max(Number(arr[1]), fileSize - 1),
+        end: min,
     };
-
 };
 
 const sendFileData = (url = __dirname, request, response, option = {}) => {
@@ -64,20 +62,33 @@ const sendFileData = (url = __dirname, request, response, option = {}) => {
             resolve();
         }
     }).then(fileSize => {
-        if (!fileSize) {
-            fs.createReadStream(url).pipe(response);
-            return;
-        }
-        let { start, end } = { ...getRequestFileRange(request.headers['range'], fileSize) };
-        response.setHeader('Content-Length', end - start);
-        fs.createReadStream(url, {
-            'start': start,
-            'end': end
-        }).pipe(response);
-    }).catch(e => {
-
+        return new Promise((res, rej) => {
+            let rs;
+            if (!fileSize) {
+                rs = fs.createReadStream(url).pipe(response);
+            } else {
+                let {
+                    start,
+                    end
+                } = { ...getRequestFileRange(request.headers['range'], fileSize) };
+                response.setHeader('Accept-Ranges', 'bytes');
+                response.setHeader('Content-Range', 'bytes ' + start + '-' + end + '/' + fileSize);
+                response.statusCode = 206;
+                rs = fs.createReadStream(url, {
+                    'start': start,
+                    'end': end
+                }).pipe(response);
+            }
+            rs.on('end', error => {
+                if (error) {
+                    rej(error);
+                    return;
+                } else {
+                    res();
+                }
+            });
+        });
     });
-
 };
 
 const getFileSize = (url, resolve, reject) => {

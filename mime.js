@@ -18,7 +18,7 @@ const mime = {
     'wma': 'audio/x-ms-wma',
     'mp3': 'audio/mpeg',
     'wmv': 'video/x-ms-wmv',
-    'mp4': 'video/x-ms-mp4',
+    'mp4': 'video/mp4',
     'mov': 'video/quicktime',
     'avi': 'video/x-msvideo',
     'mpg': 'video/mpeg',
